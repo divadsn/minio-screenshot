@@ -6,6 +6,7 @@ import clipboard
 import datetime
 import upload
 import capture
+import shortener
 
 # Minio client dependencies
 from minio import Minio
@@ -71,9 +72,11 @@ if not client.bucket_exists(config.account["bucket"]):
 # Put screenshot into bucket
 client.fput_object(config.account["bucket"], filename, path, content_type='image/png')
 
-# Build shareable link and copy it into clipboard
+# Build shareable link and shorten it
 url = ("https" if config.account["secure"] else "http") + "://" + config.account["host"] + "/" + config.account["bucket"] + "/" + filename
-clipboard.copy(url)
+if config.account["shorten_url"]:
+    url = shortener.goo_shorten_url(url, config.account["googl_key"])
 
-# Show notification, fin.
+# Copy link to clipboard and show notification, fin.
+clipboard.copy(url)
 notify_send("Screenshot uploaded!", url)

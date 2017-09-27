@@ -12,5 +12,7 @@ account = {
     "host": config.get(selected_account).get("host"),
     "access_key": config.get(selected_account).get("access_key"),
     "secret_key": config.get(selected_account).get("secret_key"),
-    "secure": config.get(selected_account).as_bool("secure")
+    "secure": config.get(selected_account).as_bool("secure"),
+    "shorten_url": config.get(selected_account).as_bool("shorten_url"),
+    "googl_key": config.get(selected_account).get("googl_key")
 }
