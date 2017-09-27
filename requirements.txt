@@ -1,0 +1,5 @@
+clipboard==0.0.4
+notify2==0.3.1
+minio==2.2.5
+configobj==5.0.6
+gi==1.2
