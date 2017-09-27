@@ -3,11 +3,10 @@
 import json
 import urllib2
 
-# Shorten URL using Google URL shortener (goo.gl)
+# Shorten URL using Google URL Shortener (goo.gl)
+# see https://developers.google.com/url-shortener/v1/getting_started
 def goo_shorten_url(url, api_key):
-    postdata = { 'longUrl': url }
-    headers = { 'Content-Type': 'application/json' }
-    request = urllib2.Request('https://www.googleapis.com/urlshortener/v1/url?key=' + api_key, json.dumps(postdata), headers)
-
+    api_url = "https://www.googleapis.com/urlshortener/v1/url?key=%s"
+    request = urllib2.Request(api_url % api_key, json.dumps({ "longUrl": url }), { 'Content-Type': 'application/json' })
     data = urllib2.urlopen(request).read()
     return json.loads(data)['id']
