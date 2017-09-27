@@ -19,6 +19,14 @@ except ImportError:
     import notify2
     Notify = None
 
+app_name = "minio-screenshot"
+
+# Init notification daemon
+if Notify is not None:
+    Notify.init(app_name)
+else:
+    notify2.init(app_name)
+
 # Helper function for notifications
 def notify_send(title, message, icon="dialog-information"):
     if Notify is not None:
