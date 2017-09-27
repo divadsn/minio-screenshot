@@ -49,7 +49,7 @@ if not os.path.exists(directory):
 # Make screenshot and save local
 filename = "Screenshot_" + datetime.datetime.now().strftime("%m-%d-%y_%I.%M.%S%p") + ".png"
 path = os.path.join(directory, filename)
-os.system("scrot -s " + path)
+os.system(capture.cmd % path)
 
 # Upload to self-hosted S3 server using Minio
 client = Minio(config.account["host"], access_key=config.account["access_key"], secret_key=config.account["secret_key"], secure=config.account["secure"])
