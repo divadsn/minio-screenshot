@@ -9,6 +9,7 @@ import capture
 
 # Minio client dependencies
 from minio import Minio
+from minio.policy import Policy
 
 # Libnotify, or notify2 if import fails
 try:
@@ -61,6 +62,11 @@ os.system(capture.cmd % path)
 
 # Upload to self-hosted S3 server using Minio
 client = Minio(config.account["host"], access_key=config.account["access_key"], secret_key=config.account["secret_key"], secure=config.account["secure"])
+
+# Create bucket if not existing and give public read access
+if not client.bucket_exists(config.account["bucket"]):
+    client.make_bucket(config.account["bucket"])
+    client.set_bucket_policy(config.account["bucket"], '', Policy.READ_ONLY)
 
 # Put screenshot into bucket
 client.fput_object(config.account["bucket"], filename, path)
