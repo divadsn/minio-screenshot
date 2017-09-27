@@ -55,8 +55,8 @@ directory = os.path.join(os.path.expanduser("~"), "Screenshots")
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-# Make screenshot and save local
-filename = "Screenshot_" + datetime.datetime.now().strftime("%m-%d-%y_%I.%M.%S%p") + ".png"
+# Make screenshot and save local (year/month/)
+filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S%p") + ".png"
 path = os.path.join(directory, filename)
 os.system(capture.cmd % path)
 
