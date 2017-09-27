@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 import configobj
 
+# Load accounts.ini as config
 config = configobj.ConfigObj("accounts.ini")
 selected_account = config.get("selected_account", "")
 
+# Selected account
 account = {
     "bucket": config.get(selected_account).get("bucket"),
     "host": config.get(selected_account).get("host"),
