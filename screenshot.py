@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import config
 import os
-import clipboard
+import pyperclip
 import datetime
 import upload
 import capture
@@ -78,5 +78,5 @@ if config.account["shorten_url"]:
     url = shortener.goo_shorten_url(url, config.account["googl_key"])
 
 # Copy link to clipboard and show notification, fin.
-clipboard.copy(url)
+pyperclip.copy(url)
 notify_send("Screenshot uploaded!", url)
