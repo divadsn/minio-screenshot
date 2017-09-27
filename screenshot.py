@@ -69,7 +69,7 @@ if not client.bucket_exists(config.account["bucket"]):
     client.set_bucket_policy(config.account["bucket"], '', Policy.READ_ONLY)
 
 # Put screenshot into bucket
-client.fput_object(config.account["bucket"], filename, path)
+client.fput_object(config.account["bucket"], filename, path, content_type='image/png')
 
 # Build shareable link and copy it into clipboard
 url = ("https" if config.account["secure"] else "http") + "://" + config.account["host"] + "/" + config.account["bucket"] + "/" + filename
