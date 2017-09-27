@@ -8,6 +8,7 @@ import datetime
 import sys
 import argparse
 import upload
+import capture
 
 # Minio client dependencies
 from minio import Minio
@@ -26,13 +27,3 @@ except ImportError:
 directory = os.path.join(os.path.expanduser("~"), "Screenshots")
 if not os.path.exists(directory):
     os.makedirs(directory)
-
-# Check platform and use the corresponding tool
-from sys import platform as _platform
-if _platform == "linux" or _platform == "linux2":
-    screencmd = 'scrot -s'
-elif _platform == "darwin":
-    screencmd = 'screenshot -s'
-else:
-    # Sorry, no support for Windows for now :(
-    exit(0)
