@@ -35,7 +35,7 @@ def notify_send(title, message, icon="dialog-information"):
         notice = Notify.Notification.new(title, message, icon)
     else:
         notice = notify2.Notification(title, message, icon)
-        notice.set_hint_string('x-canonical-append', '')
+    notice.set_hint_string('x-canonical-append', '')
     try:
         notice.show()
     except:
